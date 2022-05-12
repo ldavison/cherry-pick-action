@@ -1,0 +1,17 @@
+name: Cherry Pick Into Release
+description: Cherry pick a squahed pull request commit into a release branch
+author: Lucien Davison
+branding:
+  icon: git-pull-request
+  color: red
+inputs:
+  actor:
+    description: Person making the commit
+    required: true
+    default: ${{github.actor}}
+outputs:
+  cherry-picked:
+    description: Whether or not the operation was successful
+runs:
+  using: docker
+  image: Dockerfile
