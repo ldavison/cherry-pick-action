@@ -13,6 +13,14 @@ RELEASE_NUMBER=""
 USER_LOGIN=""
 
 
+function warn() {
+    if [ -n "${1}" ]; then
+        echo "${1}"
+    fi
+    echo "::set-output name=cherry-picked::false"
+    exit 0
+}
+
 function fail() {
     if [ -n "${1}" ]; then
         echo "${1}"
@@ -69,7 +77,7 @@ function cherry_pick() {
     TARGET_BRANCH="release/${RELEASE_NUMBER}"
     if ! git rev-parse --quiet --verify "origin/${TARGET_BRANCH}" > /dev/null; then
         gh pr comment "${PR_NUMBER}" --body "Unable to cherry pick PR because ${TARGET_BRANCH} does not exist."
-        fail "${TARGET_BRANCH} does not exist"
+        warn "${TARGET_BRANCH} does not exist"
     fi
 
     git checkout "${TARGET_BRANCH}"
