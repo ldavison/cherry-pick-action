@@ -43,7 +43,7 @@ jobs:
         with:
           fetch-depth: 0 # must be 0
       - name: Cherry Pick
-        uses: actions/cherry-pick-action@v1
+        uses: ldavison/cherry-pick-action@v1
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
