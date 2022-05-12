@@ -76,7 +76,6 @@ function cherry_pick() {
     # check for release branch
     TARGET_BRANCH="release/${RELEASE_NUMBER}"
     if ! git rev-parse --quiet --verify "origin/${TARGET_BRANCH}" > /dev/null; then
-        gh pr comment "${PR_NUMBER}" --body "Unable to cherry pick PR because ${TARGET_BRANCH} does not exist."
         warn "${TARGET_BRANCH} does not exist"
     fi
 
